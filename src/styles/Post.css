@@ -1,0 +1,20 @@
+.post {
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+
+.caption {
+  white-space: pre;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+iframe {
+  border-radius: 10px;
+}
