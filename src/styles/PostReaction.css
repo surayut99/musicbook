@@ -1,0 +1,29 @@
+.post-reaction {
+  display: flex;
+}
+
+.post-reaction > div {
+  margin-right: 20px;
+  width: fit-content !important;
+}
+
+.react-value {
+  width: 5em;
+  text-align: right;
+  display: block !important;
+}
+
+.comment-box {
+  margin-top: 20px;
+}
+
+.comment {
+  background-color: rgb(235, 235, 235);
+  border: 1.8px solid rgb(185, 185, 185);
+  border-radius: 15px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 5px;
+  width: fit-content;
+}

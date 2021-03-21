@@ -1,12 +1,23 @@
 .app-header {
   background-color: coral;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  max-height: 10vh;
+  min-height: 10vh;
+}
+
+.app-header h1 {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
   text-align: center;
 }
 
 .posts-layout {
-  margin-left: 20vw;
-  margin-right: 20vw;
+  padding-top: 10vh;
+  margin-left: 25vw;
+  margin-right: 25vw;
 }
 
