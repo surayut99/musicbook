@@ -1,5 +1,5 @@
 .app-header {
-  background-color: coral;
+  background-color: rgb(226, 224, 224);
   position: fixed;
   top: 0;
   left: 0;
@@ -21,3 +21,6 @@
   margin-right: 25vw;
 }
 
+.space-right> * {
+  margin-right: 1rem !important;
+}
