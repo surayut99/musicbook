@@ -18,10 +18,9 @@
 }
 
 .comment {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(228, 227, 227);
   border: 1.8px solid rgb(185, 185, 185);
-  border-radius: 15px;
-  padding-top: 10px;
+  border-radius: 10px;
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 5px;
