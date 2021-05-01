@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FeedContext } from "../App.js";
 import "../styles/PostReaction.css";
 
 function CommentMaker(props) {
-  const { onClickComment, id } = props;
+  const { postId } = props;
+  const { comments, setComments } = useContext(FeedContext);
   const defaultComment = {
-    id: id,
+    id: postId,
     comment: "",
   };
   const [comment, setComment] = useState(defaultComment);
 
-  function onCommentFormSubmit(evt) {
+  function onSubmitComment(evt) {
     evt.preventDefault();
-    onClickComment(comment);
-    setComment(defaultComment);
+    setComments([...comments, comment]);
   }
 
   function onChangeComment(evt) {
@@ -24,17 +25,15 @@ function CommentMaker(props) {
 
   return (
     <div>
-      <form onSubmit={onCommentFormSubmit} className="form-inline">
+      <form onSubmit={onSubmitComment}>
         <input
           type="text"
-          className="form-control mr-3 w-50"
+          className="form-control mr-3"
           value={comment.comment}
-          style={{ resize: "none" }}
           onChange={onChangeComment}
+          placeholder="Write some comments here !!!"
+          style={{ width: "150%" }}
         />
-        <button type="submit" className="btn btn-info mt-auto">
-          Comment
-        </button>
       </form>
     </div>
   );

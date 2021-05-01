@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9992;
   width: 50vw;
   margin: auto;
   margin-top: 20vh;
@@ -24,6 +24,6 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9991;
   height: 100vh;
 }

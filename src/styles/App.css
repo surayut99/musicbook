@@ -1,21 +1,25 @@
 .app-header {
-  background-color: rgb(226, 224, 224);
+  background-color: rgba(226, 224, 224, .8);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
-  max-height: 10vh;
-  min-height: 10vh;
+  z-index: 9990;
+  height: 10vh;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-.app-header h1 {
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-  text-align: center;
+.app-header>* {
+  margin-right: 1rem;
 }
 
 .posts-layout {
+  margin-top: 6vw;
   margin-left: 25vw;
   margin-right: 25vw;
 }
