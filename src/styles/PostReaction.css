@@ -18,11 +18,14 @@
 }
 
 .comment {
-  background-color: rgb(255, 199, 78);
-  border: 3px solid rgb(240, 172, 25);
-  border-radius: 10px;
+  border-radius: 20px;
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 5px;
   width: fit-content;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bg-post-reaction {
+  background-color: bisque;
 }

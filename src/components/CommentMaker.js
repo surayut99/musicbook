@@ -1,19 +1,21 @@
 import { useContext, useState } from "react";
-import { FeedContext } from "../App.js";
 import "../styles/PostReaction.css";
+import { PostContext } from "./Post.js";
 
 function CommentMaker(props) {
-  const { postId } = props;
-  const { comments, setComments } = useContext(FeedContext);
+  const { detail, onPostComment } = useContext(PostContext);
+
   const defaultComment = {
-    id: postId,
+    id: detail.id,
     comment: "",
   };
+
   const [comment, setComment] = useState(defaultComment);
 
   function onSubmitComment(evt) {
     evt.preventDefault();
-    setComments([...comments, comment]);
+    onPostComment(comment);
+    setComment(defaultComment);
   }
 
   function onChangeComment(evt) {
@@ -32,7 +34,11 @@ function CommentMaker(props) {
           value={comment.comment}
           onChange={onChangeComment}
           placeholder="Write some comments here !!!"
-          style={{ width: "150%" }}
+          style={{
+            width: "150%",
+            borderRadius: "20px",
+            border: "2px solid gray",
+          }}
         />
       </form>
     </div>

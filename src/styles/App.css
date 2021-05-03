@@ -7,11 +7,6 @@
   z-index: 9990;
   height: 10vh;
   backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
 
 .app-header>* {
@@ -19,9 +14,19 @@
 }
 
 .posts-layout {
-  margin-top: 6vw;
+  margin-top: 3vw;
   margin-left: 25vw;
   margin-right: 25vw;
+}
+
+.bg-posts-layout {
+  background-color: whitesmoke;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -999;
+  height: 100vh;
 }
 
 .space-right> * {

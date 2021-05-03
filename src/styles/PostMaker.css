@@ -15,7 +15,6 @@
   margin-top: 20vh;
   background-color: whitesmoke;
   border-radius: 10px;
-  padding: 1rem;
 }
 
 .bg-post-maker {
@@ -26,4 +25,12 @@
   right: 0;
   z-index: 9991;
   height: 100vh;
+
+  animation-name: fade-bg-post-maker;
+  animation-duration: 1s;
+}
+
+@keyframes fade-bg-post-maker {
+  from {background-color: rgba(0, 0, 0, 0);}
+  to {background-color: rgba(0, 0, 0, 0.8);}
 }

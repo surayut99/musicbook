@@ -1,16 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { FeedContext } from "../App.js";
 import { PostContext } from "./Post.js";
 
 function PostEditor(props) {
   // variables
-  const { onCloseEditForm } = props;
-  const { detail } = useContext(PostContext);
-  const { posts, setPosts } = useContext(FeedContext);
+  const { onFormClose } = props;
+  const { detail, onPostEdit } = useContext(PostContext);
   const [post, setPost] = useState(detail);
 
   // functions
-  function onPostValueChange(evt) {
+  function onValueChange(evt) {
     const { name, value } = evt.target;
     setPost({
       ...post,
@@ -18,18 +16,13 @@ function PostEditor(props) {
     });
   }
 
-  function onSubmitEdit(evt) {
+  function onPostSubmit(evt) {
     evt.preventDefault();
-    setPosts(
-      posts.map((p) => {
-        if (p.id !== post.id) return p;
-        return {
-          ...post,
-          link: post.link.replace("watch?v=", "embed/"),
-        };
-      })
-    );
-    onCloseEditForm();
+    onPostEdit({
+      ...post,
+      link: post.link.replace("watch?v=", "embed/"),
+    });
+    onFormClose();
   }
 
   useEffect(() => {
@@ -41,66 +34,69 @@ function PostEditor(props) {
 
   return (
     <div>
-      <div className="bg-post-maker" onClick={onCloseEditForm}></div>
-      <div className="post-maker">
-        <h1>Edit Your Post</h1>
-        <form onSubmit={onSubmitEdit}>
-          <div className="d-flex">
-            <div className="w-50 mr-3">
-              <label>Song: </label>
+      <div className="bg-post-maker" onClick={onFormClose}></div>
+      <div className="post-maker pt-3 overflow-hidden">
+        <h1 className="text-center">Edit Your Post</h1>
+        <form onSubmit={onPostSubmit}>
+          <div className="px-3">
+            <div className="d-flex">
+              <div className="w-50 mr-3">
+                <label>Song: </label>
+                <input
+                  name="song"
+                  value={post.song}
+                  onChange={onValueChange}
+                  type="text"
+                  className="form-control"
+                  autoFocus
+                />
+              </div>
+              <div className="w-50">
+                <label>Artist: </label>
+                <input
+                  name="artist"
+                  value={post.artist}
+                  onChange={onValueChange}
+                  type="text"
+                  className="form-control"
+                />
+              </div>
+            </div>
+            <div className="mb-3">
+              <label>Embed Link: </label>
               <input
-                name="song"
-                value={post.song}
-                onChange={onPostValueChange}
+                name="link"
+                value={post.link}
+                onChange={onValueChange}
                 type="text"
                 className="form-control"
               />
             </div>
-            <div className="w-50">
-              <label>Artist: </label>
-              <input
-                name="artist"
-                value={post.artist}
-                onChange={onPostValueChange}
-                type="text"
-                className="form-control"
+            <div className="mb-3">
+              <label>Caption: </label>
+              <textarea
+                rows="3"
+                name="caption"
+                value={post.caption}
+                onChange={onValueChange}
+                className="caption-box form-control"
               />
             </div>
           </div>
-          <div className="mb-3">
-            <label>Embed Link: </label>
-            <input
-              name="link"
-              value={post.link}
-              onChange={onPostValueChange}
-              type="text"
-              className="form-control"
-            />
-          </div>
-          <div className="mb-3">
-            <label>Caption: </label>
-            <textarea
-              rows="3"
-              name="caption"
-              value={post.caption}
-              onChange={onPostValueChange}
-              className="caption-box form-control"
-            />
-          </div>
-
-          <hr />
-
-          <div className="d-flex justify-content-between">
-            <button type="submit" className="btn btn-primary">
-              Save
-            </button>
-            <button
-              type="button"
-              onClick={onCloseEditForm}
-              className="btn btn-danger"
-            >
-              Discard
-            </button>
+          <div style={{ backgroundColor: "rgb(200, 200, 200)" }}>
+            <div className="py-3 d-flex justify-content-center space-right">
+              <button type="submit" className="btn btn-success">
+                Save
+              </button>
+              <div style={{ width: "1px", backgroundColor: "gray" }}></div>
+              <button
+                type="button"
+                onClick={onFormClose}
+                className="btn btn-danger"
+              >
+                Discard
+              </button>
+            </div>
           </div>
         </form>
       </div>
