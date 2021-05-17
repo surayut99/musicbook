@@ -1,14 +1,10 @@
 import { useContext } from "react";
-import Comment from "../components/Comment";
-import CommentMaker from "../components/CommentMaker";
 import { PostContext } from "./Post.js";
+import Comment from "../comment/Comment";
+import CommentMaker from "../comment/CommentMaker";
 
-function PostReaction(props) {
+function PostReaction() {
   const { onPostLike, detail, comments } = useContext(PostContext);
-
-  const Comments = comments.map((comment, index) => {
-    return <Comment key={index} comment={comment.comment} />;
-  });
 
   return (
     <div className="p-3">
@@ -17,10 +13,10 @@ function PostReaction(props) {
           <button
             className="btn btn-primary"
             onClick={() => {
-              onPostLike(detail.id);
+              onPostLike(detail._id);
             }}
           >
-            Like: <span className="font-weight-bold">{detail.like_counts}</span>
+            Like: <span className="font-weight-bold">{detail.like_count}</span>
           </button>
         </div>
 
@@ -34,7 +30,20 @@ function PostReaction(props) {
           <CommentMaker />
         </div>
       </div>
-      <div className="mt-3">{Comments}</div>
+      <div
+        className="px-1 my-3 py-2 border border-gray rounded comment-list"
+        style={{ backgroundColor: "white" }}
+      >
+        {comments.length !== 0 ? (
+          comments.map((comment, index) => {
+            return <Comment key={index} comment={comment} />;
+          })
+        ) : (
+          <div className="text-center">
+            <h4>No comments here</h4>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

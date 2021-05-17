@@ -1,10 +1,27 @@
+import { useEffect } from "react";
+
 function AlertForm(props) {
   const { onFormClose, onFormConfirm } = props;
 
+  function onFormUnmounted() {
+    document.getElementById("content").className += " fade-out-content";
+    document.getElementById("bg").className = "box-bg fade-out-bg";
+    setTimeout(onFormClose, 1000);
+  }
+
+  useEffect(() => {
+    document.documentElement.style.overflowY = "hidden";
+    return () => {
+      document.documentElement.style.overflowY = "auto";
+    };
+  });
+
   return (
-    <div>
-      <div className="bg-post-maker" onClick={onFormClose}></div>
-      <div className="post-maker pt-3 overflow-hidden">
+    <div id="bg" className="box-bg fade-in-bg content-float">
+      <div
+        id="content"
+        className="content-center bg-white pt-3 overflow-hidden rounded content-md"
+      >
         <div className="text-center">
           <h1>Are you Sure ?</h1>
           <p>{props.description}</p>
@@ -14,7 +31,7 @@ function AlertForm(props) {
             <button
               type="submit"
               className="btn btn-success"
-              onClick={onFormClose}
+              onClick={onFormUnmounted}
             >
               No
             </button>
@@ -24,7 +41,7 @@ function AlertForm(props) {
               className="btn btn-danger"
               onClick={() => {
                 onFormConfirm();
-                onFormClose();
+                onFormUnmounted();
               }}
             >
               Yes

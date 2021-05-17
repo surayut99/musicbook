@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
-import "../styles/PostReaction.css";
-import { PostContext } from "./Post.js";
+import "../../styles/PostReaction.css";
+import { PostContext } from "../post/Post.js";
 
-function CommentMaker(props) {
+function CommentMaker() {
   const { detail, onPostComment } = useContext(PostContext);
 
   const defaultComment = {
-    id: detail.id,
-    comment: "",
+    post_id: detail._id,
+    content: "",
   };
 
   const [comment, setComment] = useState(defaultComment);
@@ -21,7 +21,7 @@ function CommentMaker(props) {
   function onChangeComment(evt) {
     setComment({
       ...comment,
-      comment: evt.target.value,
+      content: evt.target.value,
     });
   }
 
@@ -31,7 +31,7 @@ function CommentMaker(props) {
         <input
           type="text"
           className="form-control mr-3"
-          value={comment.comment}
+          value={comment.content}
           onChange={onChangeComment}
           placeholder="Write some comments here !!!"
           style={{

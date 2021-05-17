@@ -1,5 +1,5 @@
 .app-header {
-  background-color: rgba(226, 224, 224, .8);
+  background-color: rgba(225, 225, 225, .8);
   position: fixed;
   top: 0;
   left: 0;
@@ -9,18 +9,15 @@
   backdrop-filter: blur(10px);
 }
 
-.app-header>* {
-  margin-right: 1rem;
-}
-
-.posts-layout {
-  margin-top: 3vw;
+.content-layout {
+  margin-top: 15vh;
   margin-left: 25vw;
   margin-right: 25vw;
+  margin-bottom: 5vh;
 }
 
-.bg-posts-layout {
-  background-color: whitesmoke;
+.content-bg {
+  background-color: rgb(225, 225, 225);
   position: fixed;
   top: 0;
   left: 0;
@@ -29,6 +26,80 @@
   height: 100vh;
 }
 
-.space-right> * {
+.space-right > * {
   margin-right: 1rem !important;
+}
+
+.space-left > * {
+  margin-left: 1rem !important;
+}
+
+.content-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+}
+
+.content-float {
+  z-index: 9991;
+}
+
+.content-sm {
+  width: 30vw;
+}
+
+.content-md {
+  width: 40vw;
+}
+
+.content-lg {
+  width: 50vw;
+}
+
+.fade-in-bg {
+  background-color: rgba(0, 0, 0, 0.8);
+
+  animation-name: show-bg;
+  animation-duration: 1s;
+}
+
+.fade-out-bg {
+  background-color: rgba(0, 0, 0, 0);
+
+  animation-name: hide-bg;
+  animation-duration: 1s;
+}
+
+.fade-out-content {
+  opacity: 0%;
+  animation-name: hide-content;
+  animation-duration: 1s;
+}
+
+.box-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh
+}
+
+@keyframes hide-content {
+  from {opacity: 100%;}
+  to {opacity: 0%;}
+}
+
+@keyframes show-bg {
+  from {background-color: rgba(0, 0, 0, 0);}
+  to {background-color: rgba(0, 0, 0, 0.8);}
+}
+
+@keyframes hide-bg {
+  from {background-color: rgba(0, 0, 0, 0.8);}
+  to {background-color: rgba(0, 0, 0, 0);}
 }

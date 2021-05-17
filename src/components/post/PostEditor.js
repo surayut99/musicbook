@@ -1,19 +1,11 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPost } from "../services/actions/PostAction.js";
+import { useContext, useEffect, useState } from "react";
+import { PostContext } from "./Post.js";
 
-function PostMaker(props) {
+function PostEditor(props) {
   // variables
-  const initPost = {
-    song: "",
-    artist: "",
-    caption: "",
-    link: "",
-    like_counts: 0,
-  };
   const { onFormClose } = props;
-  const [post, setPost] = useState(initPost);
-  const dispatch = useDispatch();
+  const { detail, onPostEdit } = useContext(PostContext);
+  const [post, setPost] = useState(detail);
 
   // functions
   function onValueChange(evt) {
@@ -24,16 +16,19 @@ function PostMaker(props) {
     });
   }
 
-  function onPostFormSubmit(evt) {
+  function onPostSubmit(evt) {
     evt.preventDefault();
-    dispatch(
-      addPost({
-        ...post,
-        id: Date.now(),
-        link: post.link.replace("watch?v=", "embed/"),
-      })
-    );
+    onPostEdit({
+      ...post,
+      link: post.link.replace("watch?v=", "embed/"),
+    });
     onFormClose();
+  }
+
+  function onFormUnmounted() {
+    document.getElementById("content").className += " fade-out-content";
+    document.getElementById("bg").className = "box-bg fade-out-bg";
+    setTimeout(onFormClose, 1000);
   }
 
   useEffect(() => {
@@ -44,11 +39,13 @@ function PostMaker(props) {
   });
 
   return (
-    <div>
-      <div className="bg-post-maker" onClick={onFormClose}></div>
-      <div className="post-maker overflow-hidden pt-3">
-        <h1 className="text-center">Create Your Post</h1>
-        <form onSubmit={onPostFormSubmit}>
+    <div id="bg" className="box-bg fade-in-bg content-float">
+      <div
+        id="content"
+        className="content-center bg-white pt-3 overflow-hidden rounded content-lg"
+      >
+        <h1 className="text-center">Edit Your Post</h1>
+        <form onSubmit={onPostSubmit}>
           <div className="px-3">
             <div className="d-flex">
               <div className="w-50 mr-3">
@@ -94,16 +91,15 @@ function PostMaker(props) {
               />
             </div>
           </div>
-
           <div style={{ backgroundColor: "rgb(200, 200, 200)" }}>
             <div className="py-3 d-flex justify-content-center space-right">
-              <button type="submit" className="btn btn-primary">
-                Post
+              <button type="submit" className="btn btn-success">
+                Save
               </button>
               <div style={{ width: "1px", backgroundColor: "gray" }}></div>
               <button
                 type="button"
-                onClick={onFormClose}
+                onClick={onFormUnmounted}
                 className="btn btn-danger"
               >
                 Discard
@@ -116,4 +112,4 @@ function PostMaker(props) {
   );
 }
 
-export default PostMaker;
+export default PostEditor;

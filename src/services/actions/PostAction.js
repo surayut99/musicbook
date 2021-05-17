@@ -1,34 +1,34 @@
-export const addPost = (post) => {
+export const createAct = (post) => {
   return {
-    type: "addPost",
+    type: "CREATE_POST",
     payload: post,
   };
 };
 
-export const refreshPost = (posts) => {
+export const fetchAct = (posts) => {
   return {
-    type: "refreshPost",
+    type: "FETCH_POST",
     payload: posts,
   };
 };
 
-export const likePost = (postId) => {
+export const likeAct = (postId) => {
   return {
-    type: "likePost",
+    type: "LIKE_POST",
     payload: postId,
   };
 };
 
-export const editPost = (editedPost) => {
+export const editAct = (editedPost) => {
   return {
-    type: "editPost",
+    type: "EDIT_POST",
     payload: editedPost,
   };
 };
 
-export const deletePost = (postId) => {
+export const deleteAct = (postId) => {
   return {
-    type: "deletePost",
+    type: "DELETE_POST",
     payload: postId,
   };
 };

@@ -1,36 +1,35 @@
 import { useState } from "react";
-import PostMaker from "./PostMaker";
-import NavRouter from "../routes/NavRouter";
+import PostMaker from "./post/PostMaker";
 
 function AppHeader() {
   const [isClickCreatePost, setIsClickCreatePost] = useState(false);
-  let postMaker = null;
-
-  if (isClickCreatePost) {
-    postMaker = <PostMaker onFormClose={() => setIsClickCreatePost(false)} />;
-  }
 
   return (
     <div>
-      {postMaker}
-
-      <div className="app-header d-flex justify-content-between px-3">
+      <div className="shadow app-header d-flex justify-content-between px-3">
         <div className="d-flex align-items-center space-right">
-          <h1>musicbook</h1>
-          <a
+          <a href="/" className="navbar-brand text-dark">
+            <h1>musicbook</h1>
+          </a>
+          <button
             onClick={() => setIsClickCreatePost(true)}
             className="btn btn-primary"
           >
             Create Post
-          </a>
+          </button>
         </div>
         <div className="d-flex align-items-center space-right">
-          {/* <a href="/login" className="btn btn-success">
+          <a href="/login" className="btn btn-success">
             Login
-          </a> */}
+          </a>
         </div>
       </div>
-      <NavRouter />
+
+      <div className="content-float">
+        {isClickCreatePost ? (
+          <PostMaker onFormClose={() => setIsClickCreatePost(false)} />
+        ) : null}
+      </div>
     </div>
   );
 }

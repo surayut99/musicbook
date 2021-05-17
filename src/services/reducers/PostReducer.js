@@ -1,28 +1,28 @@
 const PostReducer = (state = [], action) => {
   switch (action.type) {
-    case "addPost":
+    case "CREATE_POST":
       return [action.payload, ...state];
 
-    case "refreshPost":
+    case "FETCH_POST":
       return action.payload;
 
-    case "likePost":
+    case "LIKE_POST":
       return state.map((item) => {
-        if (item.id !== action.payload) return item;
+        if (item._id !== action.payload) return item;
         return {
           ...item,
-          like_counts: item.like_counts + 1,
+          like_count: item.like_count + 1,
         };
       });
 
-    case "editPost":
+    case "EDIT_POST":
       return state.map((item) => {
-        if (item.id !== action.payload.id) return item;
+        if (item._id !== action.payload._id) return item;
         return action.payload;
       });
 
-    case "deletePost":
-      return state.filter((item) => item.id !== action.payload);
+    case "DELETE_POST":
+      return state.filter((item) => item._id !== action.payload);
 
     default:
       return state;

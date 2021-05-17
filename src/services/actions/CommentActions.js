@@ -1,6 +1,6 @@
-export const addComment = (newComment) => {
+export const createAct = (newComment) => {
   return {
-    type: "addComment",
+    type: "CREAT_COMMENT",
     payload: newComment,
   };
 };

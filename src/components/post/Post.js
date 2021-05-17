@@ -3,11 +3,12 @@ import PostManager from "./PostManager";
 import React from "react";
 import { useDispatch } from "react-redux";
 import {
-  deletePost,
-  editPost,
   likePost,
-} from "../services/actions/PostAction.js";
-import { addComment } from "../services/actions/CommentActions.js";
+  editPost,
+  deletePost,
+} from "../../services/actions/thunkActions/PostActions.js";
+import { createComment } from "../../services/actions/thunkActions/CommentActions.js";
+import moment from "moment";
 
 const PostContext = React.createContext();
 
@@ -25,7 +26,7 @@ function Post(props) {
     dispatch(deletePost(postId));
   };
   const onPostComment = (comment) => {
-    dispatch(addComment(comment));
+    dispatch(createComment(comment));
   };
 
   return (
@@ -39,23 +40,32 @@ function Post(props) {
         onPostComment,
       }}
     >
-      <div className="mb-5 pt-3 post overflow-hidden">
+      <div className="mb-5 pt-3 post shadow overflow-hidden">
         <div className="px-3">
-          <PostManager />
-          <div style={{ lineHeight: "200" }}>
-            <h3>{detail.song}</h3>
-            <h6>{detail.artist}</h6>
-          </div>
-          <div className="content">
-            <p className="caption mt-3">{detail.caption}</p>
+          <div className="d-flex justify-content-between">
+            <div>
+              <div style={{ lineHeight: "200" }}>
+                <h3>{detail.song}</h3>
+                <h6>{detail.artist}</h6>
+              </div>
+              <div className="content">
+                <p className="caption mt-3">{detail.caption}</p>
+              </div>
+            </div>
+            <div className="d-flex space-left">
+              <p className="pt-2 text-gray">
+                {moment(detail.created_at).fromNow()}
+              </p>
+              <PostManager />
+            </div>
           </div>
         </div>
 
-        <div style={{ backgroundColor: "rgb(225, 225, 225)" }}>
+        <div style={{ backgroundColor: "whitesmoke" }} className="mt-3">
           <iframe
             title={detail.song}
             src={detail.link}
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>

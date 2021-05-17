@@ -1,6 +1,6 @@
 const CommentReducer = (state = [], action) => {
   switch (action.type) {
-    case "addComment":
+    case "CREAT_COMMENT":
       return state.concat(action.payload);
     default:
       return state;
